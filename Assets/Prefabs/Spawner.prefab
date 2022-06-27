@@ -98,3 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+  coloredItemPrefab: {fileID: 9193205009351863375, guid: 85e6d50186bbe4148bc2463aef312985, type: 3}

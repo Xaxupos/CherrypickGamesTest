@@ -37,29 +37,51 @@ public class Grid : MonoBehaviour
         {
             for (int y = 0; y < gridDimensions.height; y++)
             {
-                var slotObject = Instantiate(slotPrefab, new Vector3(x,y), Quaternion.identity);
-                slotObject.transform.SetParent(transform);
-
-                var slot = slotObject.GetComponent<Slot>();
-                slot.PositionInArray = new Vector2(x, y);
-                slot.AssignProperColor();
-
-                GridArray[x, y] = slot;
+                CreateSlot(x, y);
             }
         }
 
+        SetCenterSlot();
+
+        Camera.main.transform.position = new Vector3((float)gridDimensions.width / 2 - 0.5f, (float)gridDimensions.height / 2 - 0.5f, -10f);
+        spawner.SetPositionToCenterSlot(this);
+    }
+
+    private void SetCenterSlot()
+    {
         centerSlot = GridArray[gridDimensions.width / 2, gridDimensions.height / 2];
 
         centerSlot.IsCenterSlot = true;
         centerSlot.AssignProperColor();
-
-        Camera.main.transform.position = new Vector3((float)gridDimensions.width / 2 - 0.5f, (float)gridDimensions.height / 2 - 0.5f, -10f);
-
-        spawner.SetToCenterSlot(this);
     }
 
+    private void CreateSlot(int x, int y)
+    {
+        var slotObject = Instantiate(slotPrefab, new Vector3(x, y), Quaternion.identity);
+        slotObject.transform.SetParent(transform);
+
+        var slot = slotObject.GetComponent<Slot>();
+        slot.PositionInArray = new Vector2Int(x, y);
+        slot.AssignProperColor();
+
+        GridArray[x, y] = slot;
+    }
+
+    /// <returns>Returns center slot</returns>
     public Slot GetCenterSlot()
     {
         return centerSlot;
+    }
+
+    /// <returns>Returns array of slots</returns>
+    public Slot[,] GetSlotsArray()
+    {
+        return GridArray;
+    }
+
+    /// <returns>Returns array of slots</returns>
+    public GridDimensions GetGridDimensions()
+    {
+        return gridDimensions;
     }
 }
