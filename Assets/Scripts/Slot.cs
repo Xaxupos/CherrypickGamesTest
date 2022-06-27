@@ -3,10 +3,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Slot : MonoBehaviour
 {
-    public Vector2 PositionInArray;
+    public Vector2 PositionInArray { get; set; }
+    public bool IsDenoted { get; set; } = false;
+    public bool IsCenterSlot { get; set; } = false;
 
     private SpriteRenderer slotRenderer;
-    private bool isDenoted = false;
 
     [SerializeField] private Color whitenedColor;
     [SerializeField] private Color greyedColor;
@@ -14,17 +15,17 @@ public class Slot : MonoBehaviour
 
     private void Awake()
     {
-        slotRenderer = GetComponent<SpriteRenderer>();
+        slotRenderer = GetComponent<SpriteRenderer>();           
     }
 
     public void AssignProperColor()
     {
-        if(Random.value > 0.75f)
+        if (Random.value > 0.75f && !IsCenterSlot)
         {
-            isDenoted = true;
+            IsDenoted = true;
             slotRenderer.color = denotedColor;
             return;
-        } 
+        }
 
         if(PositionInArray.x % 2 == 0)
         {
