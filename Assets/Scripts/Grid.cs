@@ -7,8 +7,6 @@ public class Grid : MonoBehaviour
     [SerializeField] private Spawner spawner;
     [SerializeField] private GameObject slotPrefab;
 
-    public Action OnGridGenerated;
-
     private Slot[,] GridArray;
     private Slot centerSlot;
     private GridDimensions gridDimensions;

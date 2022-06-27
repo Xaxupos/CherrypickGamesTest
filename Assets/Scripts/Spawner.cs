@@ -53,7 +53,9 @@ public class Spawner : MonoBehaviour
                 if(checkingSlot != null && checkingSlot.IsEmpty && !checkingSlot.IsDenoted)
                 {
                     checkingSlot.IsEmpty = false;
-                    Instantiate(coloredItemPrefab, checkingSlot.transform.position, Quaternion.identity);
+                    var coloredItemObject = Instantiate(coloredItemPrefab, transform.position, Quaternion.identity);
+                    var coloredItem = coloredItemObject.GetComponent<ColoredItem>();
+                    coloredItem.TargetPos = checkingSlot.transform.position;
                     yield return null;
                 }
 
