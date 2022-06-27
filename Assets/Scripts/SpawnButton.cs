@@ -15,6 +15,6 @@ public class SpawnButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        StopCoroutine(spawningCoroutine);
+        if(spawningCoroutine != null) StopCoroutine(spawningCoroutine);
     }
 }

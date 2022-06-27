@@ -9,6 +9,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject coloredItemPrefab;
 
     private Slot spawnerSlot;
+    private int directionX = 1;
+    private int directionY = 0;
+    private int segment_length = 1;
+
+    private int currentX = 0;
+    private int currentY = 0;
+    private int segments_passed = 0;
 
     private bool SpawnedAtSlot(Slot slot)
     {
@@ -26,25 +33,16 @@ public class Spawner : MonoBehaviour
         GridDimensions dimensions = grid.GetGridDimensions();
         Slot[,] slots = grid.GetSlotsArray();
 
-        //Direction in which we move right now
-        int dx = 1;
-        int dy = 0;
-        int segment_length = 1;
-
-        int x = 0;
-        int y = 0;
-        int segments_passed = 0;
-
         while (true)
         {
             for (int i = 0; i < (dimensions.width/2 * dimensions.height/2); ++i)
             {
-                x += dx;
-                y += dy;
+                currentX += directionX;
+                currentY += directionY;
                 ++segments_passed;
 
-                var spawnerSlotPositionXPlus = spawnerSlot.PositionInArray.x + x;
-                var spawnerSlotPositionYPlus = spawnerSlot.PositionInArray.y + y;
+                var spawnerSlotPositionXPlus = spawnerSlot.PositionInArray.x + currentX;
+                var spawnerSlotPositionYPlus = spawnerSlot.PositionInArray.y + currentY;
 
                 if (spawnerSlotPositionXPlus >= slots.GetLength(0) || spawnerSlotPositionYPlus >= slots.GetLength(1)) yield break;
 
@@ -63,12 +61,12 @@ public class Spawner : MonoBehaviour
                 {
                     segments_passed = 0;
 
-                    int temp = dx;
-                    dx = dy;
-                    dy = -temp;
+                    int temp = directionX;
+                    directionX = directionY;
+                    directionY = -temp;
 
                     //Increase segment length if necessary
-                    if(dy == 0)
+                    if(directionY == 0)
                     {
                         ++segment_length;
                     }
