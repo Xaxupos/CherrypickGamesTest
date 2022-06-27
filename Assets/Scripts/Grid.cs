@@ -32,10 +32,12 @@ public class Grid : MonoBehaviour
                 float xPosition = x - (gridDimensions.width / 2f);
                 float yPosition = y - (gridDimensions.height / 2f);
 
-                var slot = Instantiate(slotPrefab, new Vector3(xPosition,yPosition, 0f), Quaternion.identity);
-                slot.transform.SetParent(transform);
+                var slotObject = Instantiate(slotPrefab, new Vector3(xPosition,yPosition, 0f), Quaternion.identity);
+                slotObject.transform.SetParent(transform);
 
-                slot.GetComponent<Slot>().PositionInArray = new Vector2(x, y);
+                var slot = slotObject.GetComponent<Slot>();
+                slot.PositionInArray = new Vector2(x, y);
+                slot.AssignProperColor();
             }
         }
     }

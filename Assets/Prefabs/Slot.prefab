@@ -97,3 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565d128f53d5fc445af1c326eec75b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PositionInArray: {x: 0, y: 0}
+  whitenedColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  greyedColor: {r: 0.6132076, g: 0.6103151, b: 0.6103151, a: 1}
+  denotedColor: {r: 0, g: 0, b: 0, a: 1}
