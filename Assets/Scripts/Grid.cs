@@ -42,7 +42,7 @@ public class Grid : MonoBehaviour
         SetCenterSlot();
 
         Camera.main.transform.position = new Vector3((float)gridDimensions.width / 2 - 0.5f, (float)gridDimensions.height / 2 - 0.5f, -10f);
-        spawner.SetPositionToCenterSlot(this);
+        spawner.SetPositionToSlot(centerSlot);
     }
 
     private void SetCenterSlot()

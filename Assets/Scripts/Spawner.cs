@@ -9,13 +9,19 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject coloredItemPrefab;
 
     private Slot spawnerSlot;
+
     private int directionX = 1;
     private int directionY = 0;
     private int segment_length = 1;
-
     private int currentX = 0;
     private int currentY = 0;
     private int segments_passed = 0;
+
+
+    private void Awake()
+    {
+        ResetSpawnerValues();
+    }
 
     private bool SpawnedAtSlot(Slot slot)
     {
@@ -76,13 +82,21 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets the Spawner to the grid's center slot
-    /// </summary>
-    /// <param name="grid">Grid</param>
-    public void SetPositionToCenterSlot(Grid grid)
+    public Slot GetSpawnerSlot() => spawnerSlot;
+
+    public void SetPositionToSlot(Slot slot)
     {
-        transform.position = grid.GetCenterSlot().transform.position;
-        spawnerSlot = grid.GetCenterSlot();
+        transform.position = slot.transform.position;
+        spawnerSlot = slot;
+    }
+
+    public void ResetSpawnerValues()
+    {
+        directionX = 1;
+        directionY = 0;
+        segment_length = 1;
+        currentX = 0;
+        currentY = 0;
+        segments_passed = 0;
     }
 }
