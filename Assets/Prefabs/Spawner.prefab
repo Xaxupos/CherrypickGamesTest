@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8807dc8ed04312c46a203c0e96fadc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraMover: {fileID: 0}
   nearbySlotsDetectionRadius: 3.5
   slotLayerMask:
     serializedVersion: 2

@@ -1,8 +1,10 @@
-using System.Linq;
 using UnityEngine;
 
 public class SpawnerMover : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private CameraMover cameraMover;
+
     [Header("Drop Settings")]
     [SerializeField] private float nearbySlotsDetectionRadius = 2f;
     [SerializeField] private LayerMask slotLayerMask;
@@ -20,6 +22,7 @@ public class SpawnerMover : MonoBehaviour
 
     private void OnMouseDown()
     {
+        cameraMover.IsMovementBlocked = true;
         previousSlot = spawner.GetSpawnerSlot();
         mouseDragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         spriteDragStartPosition = transform.localPosition;
@@ -32,6 +35,7 @@ public class SpawnerMover : MonoBehaviour
 
     private void OnMouseUp()
     {
+        cameraMover.IsMovementBlocked = false;
         detectedSlotsColliders = Physics2D.OverlapCircleAll(transform.position, nearbySlotsDetectionRadius, slotLayerMask);
 
         if(detectedSlotsColliders.Length == 0)
