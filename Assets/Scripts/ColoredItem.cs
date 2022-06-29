@@ -8,6 +8,8 @@ public class ColoredItem : MonoBehaviour
     [SerializeField] private float travelTime = 1f;
     [SerializeField] private Color[] colors;
 
+    public Slot AssignedSlot { get; set; }
+    public int ColorIndex { get; set; }
     public Vector3 TargetPos { get; set; }
 
     private Vector3 startPos;
@@ -16,13 +18,13 @@ public class ColoredItem : MonoBehaviour
     private void Awake()
     {
         startPos = transform.position;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        ColorIndex = Random.Range(0, colors.Length);
+        spriteRenderer.color = colors[ColorIndex];
     }
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = colors[Random.Range(0, colors.Length)];
-
         StartCoroutine(Move(startPos, TargetPos, travelTime));
     }
 

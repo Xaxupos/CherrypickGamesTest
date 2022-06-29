@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -8,6 +9,8 @@ public class Slot : MonoBehaviour
     [SerializeField] private Color greyedColor;
     [SerializeField] private Color denotedColor;
 
+    public ColoredItem AssignedColor;
+    public List<Slot> Neighbors = new List<Slot>();
     public Vector2Int PositionInArray { get; set; }
     public bool IsDenoted { get; set; } = false;
     public bool IsEmpty { get; set; } = true;

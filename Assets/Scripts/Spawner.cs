@@ -49,6 +49,8 @@ public class Spawner : MonoBehaviour
                     var coloredItemObject = Instantiate(coloredItemPrefab, transform.position, Quaternion.identity);
                     var coloredItem = coloredItemObject.GetComponent<ColoredItem>();
                     coloredItem.TargetPos = checkingSlot.transform.position;
+                    checkingSlot.AssignedColor = coloredItem;
+                    coloredItem.AssignedSlot = checkingSlot;
                     yield return null;
                 }
 
