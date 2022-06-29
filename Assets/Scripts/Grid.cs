@@ -11,7 +11,6 @@ public class Grid : MonoBehaviour
     private Slot centerSlot;
     private GridDimensions gridDimensions;
     private string jsonPath;
-    private string jsonString;
 
     private void Start()
     {
@@ -21,10 +20,8 @@ public class Grid : MonoBehaviour
 
     private void GetDimensionsFromJSON()
     {
-        jsonPath = Application.dataPath + "/Resources/GridJSON.json";
-        jsonString = File.ReadAllText(jsonPath);
-
-        gridDimensions = JsonUtility.FromJson<GridDimensions>(jsonString);
+        TextAsset textAssetData = (TextAsset)Resources.Load("GridJSON");
+        gridDimensions = JsonUtility.FromJson<GridDimensions>(textAssetData.text);
     }
 
     private void GenerateGrid()
