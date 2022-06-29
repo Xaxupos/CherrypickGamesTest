@@ -23,17 +23,6 @@ public class Spawner : MonoBehaviour
         ResetSpawnerValues();
     }
 
-    private bool SpawnedAtSlot(Slot slot)
-    {
-        if (slot != null && slot.IsEmpty && !slot.IsDenoted)
-        {
-            slot.IsEmpty = false;
-            Instantiate(coloredItemPrefab, slot.transform.position, Quaternion.identity);
-            return true;
-        }
-        return false;
-    }
-
     public IEnumerator SpawnItems()
     {  
         GridDimensions dimensions = grid.GetGridDimensions();
@@ -71,8 +60,7 @@ public class Spawner : MonoBehaviour
                     directionX = directionY;
                     directionY = -temp;
 
-                    //Increase segment length if necessary
-                    if(directionY == 0)
+                    if(directionX == 0)
                     {
                         ++segment_length;
                     }
@@ -92,8 +80,8 @@ public class Spawner : MonoBehaviour
 
     public void ResetSpawnerValues()
     {
-        directionX = 1;
-        directionY = 0;
+        directionX = 0;
+        directionY = 1;
         segment_length = 1;
         currentX = 0;
         currentY = 0;
