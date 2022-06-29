@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
     [Header("References")]
     [SerializeField] private Grid grid;
     [SerializeField] private GameObject coloredItemPrefab;
@@ -16,7 +15,6 @@ public class Spawner : MonoBehaviour
     private int currentX = 0;
     private int currentY = 0;
     private int segments_passed = 0;
-
 
     private void Awake()
     {

@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.IO;
-using System;
 
 public class Grid : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Spawner spawner;
     [SerializeField] private GameObject slotPrefab;
 
@@ -60,7 +60,6 @@ public class Grid : MonoBehaviour
                     GridSlotArray[x, y].Neighbors.Add(GridSlotArray[x, y+1]);
                 if(y-1 >= 0)
                     GridSlotArray[x, y].Neighbors.Add(GridSlotArray[x, y-1]);
-
             }
         }
     }
@@ -68,7 +67,6 @@ public class Grid : MonoBehaviour
     private void SetCenterSlot()
     {
         centerSlot = GridSlotArray[gridDimensions.width / 2, gridDimensions.height / 2];
-
         centerSlot.IsCenterSlot = true;
         centerSlot.AssignProperColor();
     }
@@ -85,19 +83,11 @@ public class Grid : MonoBehaviour
         GridSlotArray[x, y] = slot;
     }
 
-    /// <returns>Returns center slot</returns>
-    public Slot GetCenterSlot()
-    {
-        return centerSlot;
-    }
-
-    /// <returns>Returns array of slots</returns>
     public Slot[,] GetSlotsArray()
     {
         return GridSlotArray;
     }
 
-    /// <returns>Returns array of slots</returns>
     public GridDimensions GetGridDimensions()
     {
         return gridDimensions;

@@ -7,7 +7,7 @@ public class CameraMover : MonoBehaviour
 
     private Vector3 origin;
 
-    void Update()
+    void LateUpdate()
     {
         if(IsMovementBlocked || EventSystem.current.IsPointerOverGameObject()) return;
 

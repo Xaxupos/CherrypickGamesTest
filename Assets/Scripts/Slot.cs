@@ -32,27 +32,13 @@ public class Slot : MonoBehaviour
             return;
         }
 
-        if(PositionInArray.x % 2 == 0)
+        if((PositionInArray.x % 2 == 0 &&PositionInArray. y % 2 != 0) || (PositionInArray.x % 2 != 0 && PositionInArray.y % 2 == 0))
         {
-            if(PositionInArray.y % 2 == 0)
-            {
-                slotRenderer.color = greyedColor;
-            }
-            else
-            {
-                slotRenderer.color = whitenedColor;
-            }
+            slotRenderer.color = greyedColor;
         }
         else
         {
-            if (PositionInArray.y % 2 == 0)
-            {
-                slotRenderer.color = whitenedColor;
-            }
-            else
-            {
-                slotRenderer.color = greyedColor;
-            }
+            slotRenderer.color = whitenedColor;
         }
     }
 }
