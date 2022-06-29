@@ -20,11 +20,11 @@ public class ClearManager : MonoBehaviour
     {
         foreach(var slot in grid.GetSlotsArray())
         {
-            if (slot.AssignedColor == null) continue;
+            if (slot.AssignedColor == null || slot.IsEmpty) continue;
 
             foreach(var neighbor in slot.Neighbors)
             {
-                if(neighbor.AssignedColor == null) continue;
+                if(neighbor.AssignedColor == null || slot.IsEmpty) continue;
 
                 if(slot.AssignedColor.ColorIndex == neighbor.AssignedColor.ColorIndex)
                 {
